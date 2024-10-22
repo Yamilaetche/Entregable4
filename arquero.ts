@@ -1,20 +1,23 @@
-import { Personaje } from "./personaje";
+import { Personaje } from "./Personaje";
 
-export class Arquero extends Personaje{
-    private capacidades: string;
-
-    constructor(nombre: string, nivel: number, puntosDeVida: number, capacidades: string){
-        super(nombre, nivel, puntosDeVida);
-        this.capacidades = capacidades;
+export class Arquero extends Personaje {
+    protected precision:number=50;
+    private veneno:number=5;
+    constructor(nombre: string) {
+        super(nombre);
     }
 
-    public atacar(): void {
-        console.log(`${this.nombre} ataca lanzando flechas con su arco`);
+     atacar(): number {
+        if(this.veneno>0) {
+            this.veneno--;
+            return this.ataque.atacar() * this.veneno;
+        }
+        return this.ataque.atacar();
     }
-    public defender(): void{
-        console.log(`${this.nombre} se defiende con un escudo de acero`);
-        
+    public addVeneno():void{
+        if(this.veneno<5) {
+            this.veneno++;
+        }
     }
-    
 
 }

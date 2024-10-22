@@ -1,15 +1,41 @@
+import { Ataque } from "./Ataques/Ataque";
 
- export abstract class Personaje{
+ export  class Personaje{
     protected nombre: string;
     protected nivel: number;
     protected puntosDeVida: number;
+    protected ataque: Ataque;
 
-    constructor(nombre: string, nivel: number, puntosDeVida: number){
+    constructor(nombre: string){
+        
         this.nombre= nombre;
-        this.nivel = nivel;
-        this.puntosDeVida = puntosDeVida;
+        this.nivel = 1;
+        this.puntosDeVida = 50;
+        this.ataque = new Ataque();
     }
 
-    abstract atacar(): void;
-    abstract defender(): void;
+    public atacar(): number{
+        return this.ataque.atacar();
+    }
+    public defender(): string{
+        return `${this.nombre} se está defendiendo`;
+    }
+    public getNombre(): string{
+        return this.nombre;
+    }
+    public getNivel(): number{
+        return this.nivel;
+    }
+    public getPuntosDeVida(): number{
+        return this.puntosDeVida;
+    }
+    public subirNivel(): void{
+        this.nivel++;
+        console.log(`${this.nombre} ha subido al nivel ${this.nivel}`)
+    }
+    public setAtaque(ataques: Ataque): void{
+        this.ataque= ataques;
+    }
+ 
+ 
 }
